@@ -17,12 +17,13 @@
 <meta property="og:description" content="C&#x2F;C++小知识 想到什么写什么">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-27T10:19:29.000Z">
-<meta property="article:modified_time" content="2023-07-27T14:20:14.579Z">
+<meta property="article:modified_time" content="2023-07-29T13:16:32.386Z">
 <meta property="article:author" content="777">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="小知识">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="unsigned">
+<meta property="article:tag" content="static">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="很高兴认识你" type="application/atom+xml">
@@ -99,7 +100,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/const/" style="font-size: 10px;">const</a> <a href="/tags/linear/" style="font-size: 15px;">linear</a> <a href="/tags/unsigned/" style="font-size: 10px;">unsigned</a> <a href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" style="font-size: 15px;">小知识</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15px;">数据结构</a>
+						<a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/const/" style="font-size: 10px;">const</a> <a href="/tags/linear/" style="font-size: 15px;">linear</a> <a href="/tags/static/" style="font-size: 10px;">static</a> <a href="/tags/unsigned/" style="font-size: 10px;">unsigned</a> <a href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" style="font-size: 15px;">小知识</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15px;">数据结构</a>
 					</div>
 				</section>
 				
@@ -186,7 +187,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unsigned/" rel="tag">unsigned</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="tag">小知识</a></li></ul>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/static/" rel="tag">static</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unsigned/" rel="tag">unsigned</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="tag">小知识</a></li></ul>
 	</div>
 
         
@@ -201,9 +202,30 @@
         <p>C&#x2F;C++小知识 想到什么写什么</p>
 <span id="more"></span>
 
-<h1 id="C-小知识—unsigned-int"><a href="#C-小知识—unsigned-int" class="headerlink" title="C++小知识—unsigned int"></a>C++小知识—unsigned int</h1><p>unsigned int 没有负数<br>如果你很不巧写出了这样的代码:<br>    unsigned int t &#x3D; -1;<br>    std::cout &lt;&lt; t &lt;&lt; std::endl;<br>那么你就会得到一个一个奇怪的结果 4294967295<br>并且这个结果也不是一个随机的值,而是一个固定值<br>这是为什么呢?</p>
+<h1 id="C-C-小知识—unsigned-int"><a href="#C-C-小知识—unsigned-int" class="headerlink" title="C&#x2F;C++小知识—unsigned int"></a>C&#x2F;C++小知识—unsigned int</h1><p>unsigned int 没有负数<br>如果你很不巧写出了这样的代码:<br>    unsigned int t &#x3D; -1;<br>    std::cout &lt;&lt; t &lt;&lt; std::endl;<br>那么你就会得到一个一个奇怪的结果 4294967295<br>并且这个结果也不是一个随机的值,而是一个固定值<br>这是为什么呢?</p>
 <hr>
 <p>首先,理解一下有unsigned和没有的区别<br>在计算机中如果没有unsigned,那么就将二进制编码的首位当作符号位,0代表正数,1代表负数<br>如果要表示-1的话,它的二进制编码大概长这样<br>1111 1111 1111 1111 1111 1111 1111 1111<br>再次强调一下,unsigned代表无符号,<strong>会将二进制编码的首位当作数据使用</strong>(此处”数据”表述不恰当,本意为不当符号使用,而是作为一个数)<br>所以硬要用它存数据,他直接计算那上面的一长串”1”,最终得到 4294967295</p>
+<hr>
+<h1 id="C-C-小知识—static"><a href="#C-C-小知识—static" class="headerlink" title="C&#x2F;C++小知识—static"></a>C&#x2F;C++小知识—static</h1><ol>
+<li><p>因为全局变量易被污染,所以我们在使用全局变量的时候优先考虑添加static</p>
+</li>
+<li><p>在多文件变编程中,如果不想让用户调用一些辅助函数时,可以添加static<br>例如我们在写树的时候,写了一个递归调用的先序遍历:<br> static void preOrder(Node *node) {<br> if(node){<br> visitBtree(node);<br> preOrder(node-&gt;left);<br> preOrder(node-&gt;right);<br> }<br> }<br> void  preOrderTree(Tree *tree) {<br> if (tree) {<br>     preOrder(tree-&gt;root);<br> }<br> }<br>就可以这样写,在其他文件中,用户就不会调用这个函数了</p>
+</li>
+<li><p>在类中的static(C++)<br>在类中我们无法直接对变量初始化,只能声明,然后在类外初始化,例:<br> clss Test {<br> public:<br> static int num;<br> }</p>
+<p> int Test::num &#x3D; 20;</p>
+</li>
+</ol>
+<p>在类中我们可以使用const对变量初始化,例:<br>    class Test {<br>    public:<br>        static const int num &#x3D; 20;<br>    }<br>在类中对方法添加static<br>    clss Test {<br>    public:<br>        static int num;<br>        static void print_num() {return num;}<br>    }</p>
+<pre><code>int Test::num = 20;
+</code></pre>
+<p>这里值得注意的是<strong>被static修饰的方法</strong>,只能调用<strong>static修饰的变量</strong></p>
+<ol start="4">
+<li><p>再举个栗子<br>直接上代码<br> clss Test {<br> public:<br> static int num;<br> Test() {num++;}<br> }<br> int Test::num &#x3D; 20;</p>
+<p> int main()<br> {<br> Test t1;<br> Test t2[5];<br> Test t3;<br> std::cout &lt;&lt; Test::num &lt;&lt; std::endl;<br> return 0;<br> }<br> &#x2F;&#x2F; 最终运行结果为27</p>
+</li>
+</ol>
+<p>被static修饰过的变量在整个类中都是一样的,方法也是(好像是句废话)</p>
+<hr>
 
       
     </div>
