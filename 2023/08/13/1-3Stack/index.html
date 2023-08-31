@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://example.com/img/stack_fu.png">
 <meta property="og:image" content="http://example.com/img/stack_em.png">
 <meta property="article:published_time" content="2023-08-13T13:49:42.000Z">
-<meta property="article:modified_time" content="2023-08-15T12:49:59.710Z">
+<meta property="article:modified_time" content="2023-08-31T02:42:11.266Z">
 <meta property="article:author" content="777">
 <meta property="article:tag" content="linear">
 <meta property="article:tag" content="数据结构">
@@ -221,9 +221,97 @@
 <li><p>栈的操作</p>
 <p> &#x2F;&#x2F;创建<br> ArrayStack *createArrayStack();<br> &#x2F;&#x2F;释放<br> void releaseArrayStack(ArrayStack *array);<br> &#x2F;&#x2F;压栈<br> int pushArrayStack(ArrayStack *array,element elem);<br> &#x2F;&#x2F;弹栈<br> int popArrayStack(ArrayStack *array,element *elem); </p>
 </li>
-<li><p>实现</p>
+<li><p>实现<br> ArrayStack *createArrayStack() {<br> ArrayStack *array &#x3D;(ArrayStack *) malloc(sizeof (ArrayStack));<br> if(array &#x3D;&#x3D; NULL){<br>     printf(“ArrayStack malloc failed\n”);<br>     return NULL;<br> }<br> array-&gt;top &#x3D; -1;                                                &#x2F;&#x2F; 该写法为满递增栈<br> return array;<br> }</p>
 </li>
 </ol>
+<hr>
+<pre><code>void releaseArrayStack(ArrayStack *array) &#123;
+    if (array) &#123;
+        free(array);                        // 因为array的储存方式只有数组,所以直接释放就行
+    &#125;
+&#125;
+</code></pre>
+<hr>
+<pre><code>int pushArrayStack(ArrayStack *array,element elem) &#123;
+    if (array) &#123;
+        array.data[++array.top] = data;             // 因为为满递增栈,所以top先自增
+        return 0;
+    &#125;
+    return -1;
+&#125;
+</code></pre>
+<hr>
+<pre><code>int popArrayStack(ArrayStack *array,element *elem) &#123;
+    if (array) &#123;
+        if (array.top &lt; 0) &#123;
+            printf(&quot;UnderFlow\n&quot;);
+            return -1;
+        &#125;
+        *elem = array.data[array.top--];            // 因为为满递增栈,所以先取数据,再自减;
+        return 0;
+    &#125;
+    return -1;
+&#125;
+</code></pre>
+<hr>
+<h3 id="Link-Stack"><a href="#Link-Stack" class="headerlink" title="Link Stack"></a>Link Stack</h3><p>就是将顺序存储,换成链式存储.</p>
+<ol>
+<li><p>结构体定义换一下</p>
+<p> &#x2F;&#x2F;节点<br> typedef struct nodeStack {<br> element elem;<br> struct nodeStack *next;<br> }NodeStack;<br> &#x2F;&#x2F;链式栈的表头<br> typedef struct {<br> NodeStack top;<br> int len;<br> }LinkStack;</p>
+</li>
+<li><p>栈的操作<br>跟arrayStack类似</p>
+<p> LinkStack *createLinkStack();<br> void releaseLinkStack(LinkStack *link);<br> int pushLinkStack(LinkStack *link,element elem);<br> int popLinkStack(LinkStack *link,element *elem);</p>
+</li>
+<li><p>实现<br> LinkStack *createLinkStack() {<br> LinkStack *link &#x3D; (LinkStack *)malloc(sizeof(Linkstack));<br> if (link &#x3D;&#x3D; NULL) {<br>     printf(“LinkStack malloc failed\n”);<br>     return NULL:<br> }<br> &#x2F;&#x2F; 初始化<br> link-&gt;top.next &#x3D; NULL:<br> link-&gt;len &#x3D; 0;<br> link-&gt;top.elem &#x3D; 777;   &#x2F;&#x2F; 随便写的(不写也行)<br> return link;<br> }</p>
+</li>
+</ol>
+<hr>
+<pre><code>void releaseLinkStack(LinkStack *link) &#123;
+    if (link) &#123;
+        while (link-&gt;top.next) &#123;
+            NodeStack *tmp = link-&gt;top.next;
+            link-&gt;top.next = tmp-&gt;next;
+            free(tmp);
+            link-&gt;len--;
+        &#125;
+        printf(&quot;release success\nlen = %d&quot;,link-&gt;len);
+        free(link);
+    &#125;
+&#125;
+</code></pre>
+<hr>
+<pre><code>int pushLinkStack(LinkStack *link,element elem) &#123;
+    if (link) &#123;
+        NodeStack *tmp = (NodeStack*)malloc(sizeof(NodeStack));
+        if (tmp == NULL) &#123;
+            // 以后不写了,都是一样的处理办法
+            ...
+        &#125;
+        // 头插法
+        tmp-&gt;next = link-&gt;top.next;
+        tmp-&gt;elem = elem;
+        link-&gt;top.next = node;
+        link-&gt;len++;
+        return 0;
+    &#125;
+    return -1;
+&#125;
+</code></pre>
+<hr>
+<pre><code>int popLinkStack(LinkStack *link,element *elem) &#123;
+    if (link) &#123;
+        *elem = link-&gt;top.elem;
+        NodeStack *tmp = link-&gt;top.next;
+        link-&gt;top.next = tmp-&gt;next;
+        free(tmp);
+        link-&gt;len--;
+        return 0;
+    &#125;
+    return -1;
+&#125;
+</code></pre>
+<hr>
+<p>无了</p>
 
       
     </div>
