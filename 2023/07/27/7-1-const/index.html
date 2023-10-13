@@ -17,7 +17,7 @@
 <meta property="og:description" content="小知识系列之const">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-27T08:16:11.000Z">
-<meta property="article:modified_time" content="2023-08-03T12:40:13.452Z">
+<meta property="article:modified_time" content="2023-10-12T09:09:05.700Z">
 <meta property="article:author" content="777">
 <meta property="article:tag" content="const">
 <meta property="article:tag" content="C++">
@@ -198,54 +198,54 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>小知识系列之const</p>
-<span id="more"></span>
-<h1 id="C-小知识–const"><a href="#C-小知识–const" class="headerlink" title="C++小知识–const"></a>C++小知识–const</h1><p><strong>尽可能使用const</strong><br>    <strong>Use const whatever possible</strong><br>这句话出自&lt;&lt;Effective C++&gt;&gt;,合理地使用const能极大程度上避免错误.</p>
+        <h1 id="小知识系列之const"><a href="#小知识系列之const" class="headerlink" title="小知识系列之const"></a>小知识系列之const</h1><span id="more"></span>
+
+<h2 id="C-小知识–const"><a href="#C-小知识–const" class="headerlink" title="C++小知识–const"></a>C++小知识–const</h2><p><strong>尽可能使用const</strong><br>    <strong>Use const whatever possible</strong><br>这句话出自&lt;&lt;Effective C++&gt;&gt;,合理地使用const能极大程度上避免错误.</p>
 <p>相信很多人在阅读大佬代码的时候,都能看到const,但不知道为什么要加上const,去掉const之后代码似乎也能跑?<br>这是为什么呢?</p>
 <p>这就是const的奇妙之处<br>我们先来看一段代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class Test &#123;...&#125;;</span><br><span class="line">const Test operator* (const Test &amp;num1,const Test &amp;num2);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Test</span> &#123;...&#125;;</span><br><span class="line"><span class="type">const</span> Test <span class="keyword">operator</span>* (<span class="type">const</span> Test &amp;num1,<span class="type">const</span> Test &amp;num2);</span><br></pre></td></tr></table></figure>
 
 <p>先忽略掉参数里的const,这个函数为什么返回的是一个const对象?<br>原因是如果不这样使用者可以执行如下操作:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Test a,b,c;</span><br><span class="line">...</span><br><span class="line">(a * b) = c;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Test a,b,c;</span><br><span class="line">...</span><br><span class="line">(a * b) = c;</span><br></pre></td></tr></table></figure>
 
 <p>虽然给一个乘积赋值可能是没有意义的,也可能是使用者想实现一个比较操作”&#x3D;&#x3D;”,但手误漏打了一个”&#x3D;”<br>类似这样</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if ((a * b) = c) ...</span><br><span class="line">// 错误就产生了</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((a * b) = c) ...</span><br><span class="line"><span class="comment">// 错误就产生了</span></span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>我们再回过头来,看一下const的语法</p>
 <ol>
-<li>const修饰非指针变量<br>这里面非指针变量包含(std::string, int, char…)<br>以char为例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> const char p = &#x27;a&#x27;;  // const data</span><br><span class="line"> char const p2 = &#x27;b&#x27;; // const data</span><br><span class="line">// 此处const用法相同</span><br></pre></td></tr></table></figure></li>
-<li>const修饰指针变量<br>以 * 为分界线</li>
+<li>const修饰非指针变量<br>这里面非指针变量包含(std::string, int, char…)<br>以char为例</li>
 </ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">const</span> <span class="type">char</span> p = <span class="string">&#x27;a&#x27;</span>;  <span class="comment">// const data</span></span><br><span class="line"> <span class="type">char</span> <span class="type">const</span> p2 = <span class="string">&#x27;b&#x27;</span>; <span class="comment">// const data</span></span><br><span class="line"><span class="comment">// 此处const用法相同</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>const修饰指针变量<br>以 *为分界线<br> 2.1. const在*前</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span> *p = <span class="string">&quot;123456&quot;</span>;   <span class="comment">// non-const pointer,const data</span></span><br><span class="line">p = <span class="string">&quot;123&quot;</span>;                  <span class="comment">// 此时p所指向的对象更改</span></span><br><span class="line">                            <span class="comment">// 如果你打开编译器调试一下</span></span><br><span class="line">                            <span class="comment">// 会看到更直观的内存地址变化</span></span><br></pre></td></tr></table></figure>
+
 <hr>
-<p> 2.1. const在*前<br>    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const char *p = &quot;123456&quot;;   // non-const pointer,const data</span><br><span class="line">p = &quot;123&quot;;                  // 此时p所指向的对象更改</span><br><span class="line">                            // 如果你打开编译器调试一下</span><br><span class="line">                            // 会看到更直观的内存地址变化</span><br></pre></td></tr></table></figure></p>
+<p>2.2. const在*后</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> temp[] = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="type">char</span> * <span class="type">const</span> p = temp;  <span class="comment">// const pointer,non-const data</span></span><br><span class="line">p[<span class="number">0</span>] = <span class="string">&#x27;a&#x27;</span>;                 <span class="comment">// 此时p的值被修改,地址不变化</span></span><br></pre></td></tr></table></figure>
+
 <hr>
-<p>2.2. const在*后<br>    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char temp[] = &quot;Hello&quot;;</span><br><span class="line">char * const p = temp;  // const pointer,non-const data</span><br><span class="line">p[0] = &#x27;a&#x27;;                 // 此时p的值被修改,地址不变化</span><br></pre></td></tr></table></figure></p>
+<p>2.3. const在*前后</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表示数据无法修改,并且指针指向不能修改</span></span><br></pre></td></tr></table></figure>
+
 <hr>
-<p>2.3. const在*前后<br>    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 表示数据无法修改,并且指针指向不能修改</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h1 id="顶层const与底层const"><a href="#顶层const与底层const" class="headerlink" title="顶层const与底层const"></a>顶层const与底层const</h1><h4 id="这些话出自C-primer"><a href="#这些话出自C-primer" class="headerlink" title="(这些话出自C++ primer)"></a>(这些话出自C++ primer)</h4><p>指针本身是一个对象，它又可以指向另外一个对象。<br>因此，指针本身是不是常量以及指针所指的是不是一个常量就是两个相互独立的问题。<br>用名词顶层 const(top-levelconst)表示指针本身是个常量，而用名词底层const (lowevelconst)表示指针所指的对象是一个常量。<br>例子:</p>
-<pre><code>    const int * const p = new int(77);
-//   底层        顶层
-    const int &amp; p1 = p;
-//   底层               用于声明引用的const都是底层const
-</code></pre>
+<h2 id="顶层const与底层const"><a href="#顶层const与底层const" class="headerlink" title="顶层const与底层const"></a>顶层const与底层const</h2><p> (这些话出自C++ primer)</p>
+<p>指针本身是一个对象，它又可以指向另外一个对象。<br>因此，指针本身是不是常量以及指针所指的是不是一个常量就是两个相互独立的问题。<br>用名词顶层 const(top-levelconst)表示指针本身是个常量，而用名词底层const (lowevelconst)表示指针所指的对象是一个常量。<br>例子:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    <span class="type">const</span> <span class="type">int</span> * <span class="type">const</span> p = new <span class="type">int</span>(<span class="number">77</span>);</span><br><span class="line"><span class="comment">//   底层        顶层</span></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> &amp; p1 = p;</span><br><span class="line"><span class="comment">//   底层               用于声明引用的const都是底层const</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <p>当执行对象的拷贝操作时，常量是顶层 const 还是底层const 区别明显。其中，顶层const 不受什么影响<br>例子:</p>
-<pre><code>const int p = 10;
-int p1 = p;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> p = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> p1 = p;</span><br></pre></td></tr></table></figure>
+
 <p>值得注意的是const int 类型的p的地址具有const int *类型<br>例子:</p>
-<pre><code>cons int p = 10;
-//   int * p1 = &amp;p;     // 错误
-const int *p2 = &amp;p;     // 正确
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cons <span class="type">int</span> p = <span class="number">10</span>;</span><br><span class="line"><span class="comment">//   int * p1 = &amp;p;     // 错误</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> *p2 = &amp;p;     <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
+
 <p>另一方面，底层 const 的限制却不能忽视。<br>当执行对象的拷贝操作时，拷入和拷出的对象必须具有相同的底层 const 资格，或者两个对象的数据类型必须能够转换。<br>一般来说，非常量可以转换成常量，反之则不行<br>例子:</p>
-<pre><code>const int * const p = new int(77);
-//    int * p1 = p;                 // 错误
-const int * p2 = p;                 // 正确
-const int * const p3 = p;           // 正确
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> * <span class="type">const</span> p = new <span class="type">int</span>(<span class="number">77</span>);</span><br><span class="line"><span class="comment">//    int * p1 = p;                 // 错误</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> * p2 = p;                 <span class="comment">// 正确</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> * <span class="type">const</span> p3 = p;           <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <p>暂时无了</p>
 <hr>

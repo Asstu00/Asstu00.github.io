@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://example.com/img/stack_fu.png">
 <meta property="og:image" content="http://example.com/img/stack_em.png">
 <meta property="article:published_time" content="2023-08-13T13:49:42.000Z">
-<meta property="article:modified_time" content="2023-09-26T13:59:33.318Z">
+<meta property="article:modified_time" content="2023-10-13T08:36:08.376Z">
 <meta property="article:author" content="777">
 <meta property="article:tag" content="linear">
 <meta property="article:tag" content="数据结构">
@@ -215,120 +215,49 @@
 <hr>
 <h3 id="Array-Stack"><a href="#Array-Stack" class="headerlink" title="Array Stack"></a>Array Stack</h3><p>就是首先申请一个数组,然后用这个数组模拟栈.</p>
 <ol>
-<li><p>定义一个结构体</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const int MaxStackSize =  5;        // 初始化数组范围</span><br><span class="line">typedef struct&#123;</span><br><span class="line">    element data[MaxStackSize];     // 栈</span><br><span class="line">    int top;                        // flag</span><br><span class="line">&#125;ArrayStack;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>栈的操作</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//创建</span><br><span class="line">ArrayStack *createArrayStack();</span><br><span class="line">//释放</span><br><span class="line">void releaseArrayStack(ArrayStack *array);</span><br><span class="line">//压栈</span><br><span class="line">int pushArrayStack(ArrayStack *array,element elem);</span><br><span class="line">//弹栈</span><br><span class="line">int popArrayStack(ArrayStack *array,element *elem); </span><br></pre></td></tr></table></figure></li>
-<li><p>实现</p>
-</li>
+<li>定义一个结构体</li>
 </ol>
-<hr>
-<pre><code>ArrayStack *createArrayStack() &#123;
-    ArrayStack *array =(ArrayStack *) malloc(sizeof (ArrayStack));
-    if(array == NULL)&#123;
-        printf(&quot;ArrayStack malloc failed\n&quot;);
-        return NULL;
-    &#125;
-    array-&gt;top = -1;                                                // 该写法为满递增栈
-    return array;
-&#125;
-</code></pre>
-<hr>
-<pre><code>void releaseArrayStack(ArrayStack *array) &#123;
-    if (array) &#123;
-        free(array);                        // 因为array的储存方式只有数组,所以直接释放就行
-    &#125;
-&#125;
-</code></pre>
-<hr>
-<pre><code>int pushArrayStack(ArrayStack *array,element elem) &#123;
-    if (array) &#123;
-        array.data[++array.top] = data;             // 因为为满递增栈,所以top先自增
-        return 0;
-    &#125;
-    return -1;
-&#125;
-</code></pre>
-<hr>
-<pre><code>int popArrayStack(ArrayStack *array,element *elem) &#123;
-    if (array) &#123;
-        if (array.top &lt; 0) &#123;
-            printf(&quot;UnderFlow\n&quot;);
-            return -1;
-        &#125;
-        *elem = array.data[array.top--];            // 因为为满递增栈,所以先取数据,再自减;
-        return 0;
-    &#125;
-    return -1;
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MaxStackSize =  <span class="number">5</span>;        <span class="comment">// 初始化数组范围</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    element data[MaxStackSize];     <span class="comment">// 栈</span></span><br><span class="line">    <span class="type">int</span> top;                        <span class="comment">// flag</span></span><br><span class="line">&#125;ArrayStack;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>栈的操作</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建</span></span><br><span class="line">ArrayStack *<span class="title function_">createArrayStack</span><span class="params">()</span>;</span><br><span class="line"><span class="comment">//释放</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">releaseArrayStack</span><span class="params">(ArrayStack *<span class="built_in">array</span>)</span>;</span><br><span class="line"><span class="comment">//压栈</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">pushArrayStack</span><span class="params">(ArrayStack *<span class="built_in">array</span>,element elem)</span>;</span><br><span class="line"><span class="comment">//弹栈</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">popArrayStack</span><span class="params">(ArrayStack *<span class="built_in">array</span>,element *elem)</span>; </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>实现</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ArrayStack *<span class="title function_">createArrayStack</span><span class="params">()</span> &#123;</span><br><span class="line">    ArrayStack *<span class="built_in">array</span> =(ArrayStack *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span> (ArrayStack));</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">array</span> == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ArrayStack malloc failed\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">array</span>-&gt;top = <span class="number">-1</span>;                                                <span class="comment">// 该写法为满递增栈</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">array</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">releaseArrayStack</span><span class="params">(ArrayStack *<span class="built_in">array</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">array</span>) &#123;</span><br><span class="line">        <span class="built_in">free</span>(<span class="built_in">array</span>);                        <span class="comment">// 因为array的储存方式只有数组,所以直接释放就行</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">pushArrayStack</span><span class="params">(ArrayStack *<span class="built_in">array</span>,element elem)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">array</span>) &#123;</span><br><span class="line">        <span class="built_in">array</span>.data[++<span class="built_in">array</span>.top] = data;             <span class="comment">// 因为为满递增栈,所以top先自增</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">popArrayStack</span><span class="params">(ArrayStack *<span class="built_in">array</span>,element *elem)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">array</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">array</span>.top &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;UnderFlow\n&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        *elem = <span class="built_in">array</span>.data[<span class="built_in">array</span>.top--];            <span class="comment">// 因为为满递增栈,所以先取数据,再自减;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="Link-Stack"><a href="#Link-Stack" class="headerlink" title="Link Stack"></a>Link Stack</h3><p>就是将顺序存储,换成链式存储.</p>
 <ol>
-<li>结构体定义换一下<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//节点</span><br><span class="line">typedef struct nodeStack &#123;</span><br><span class="line">    element elem;</span><br><span class="line">    struct nodeStack *next;</span><br><span class="line">&#125;NodeStack;</span><br><span class="line">//链式栈的表头</span><br><span class="line">typedef struct &#123;</span><br><span class="line">    NodeStack top;</span><br><span class="line">    int len;</span><br><span class="line">&#125;LinkStack;</span><br></pre></td></tr></table></figure></li>
-<li>栈的操作<br>跟arrayStack类似<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LinkStack *createLinkStack();</span><br><span class="line">void releaseLinkStack(LinkStack *link);</span><br><span class="line">int pushLinkStack(LinkStack *link,element elem);</span><br><span class="line">int popLinkStack(LinkStack *link,element *elem);</span><br></pre></td></tr></table></figure></li>
+<li>结构体定义换一下</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//节点</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodeStack</span> &#123;</span></span><br><span class="line">    element elem;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">nodeStack</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;NodeStack;</span><br><span class="line"><span class="comment">//链式栈的表头</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    NodeStack top;</span><br><span class="line">    <span class="type">int</span> len;</span><br><span class="line">&#125;LinkStack;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>栈的操作<br>跟arrayStack类似</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LinkStack *<span class="title function_">createLinkStack</span><span class="params">()</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">releaseLinkStack</span><span class="params">(LinkStack *link)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">pushLinkStack</span><span class="params">(LinkStack *link,element elem)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">popLinkStack</span><span class="params">(LinkStack *link,element *elem)</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
 <li>实现</li>
 </ol>
-<hr>
-<pre><code>LinkStack *createLinkStack() &#123;
-    LinkStack *link = (LinkStack *)malloc(sizeof(Linkstack));
-    if (link == NULL) &#123;
-        printf(&quot;LinkStack malloc failed\n&quot;);
-        return NULL:
-    &#125;
-    // 初始化
-    link-&gt;top.next = NULL:
-    link-&gt;len = 0;
-    link-&gt;top.elem = 777;   // 随便写的(不写也行)
-    return link;
-&#125;
-</code></pre>
-<hr>
-<pre><code>void releaseLinkStack(LinkStack *link) &#123;
-    if (link) &#123;
-        while (link-&gt;top.next) &#123;
-            NodeStack *tmp = link-&gt;top.next;
-            link-&gt;top.next = tmp-&gt;next;
-            free(tmp);
-            link-&gt;len--;
-        &#125;
-        printf(&quot;release success\nlen = %d&quot;,link-&gt;len);
-        free(link);
-    &#125;
-&#125;
-</code></pre>
-<hr>
-<pre><code>int pushLinkStack(LinkStack *link,element elem) &#123;
-    if (link) &#123;
-        NodeStack *tmp = (NodeStack*)malloc(sizeof(NodeStack));
-        if (tmp == NULL) &#123;
-            // 以后不写了,都是一样的处理办法
-            ...
-        &#125;
-        // 头插法
-        tmp-&gt;next = link-&gt;top.next;
-        tmp-&gt;elem = elem;
-        link-&gt;top.next = node;
-        link-&gt;len++;
-        return 0;
-    &#125;
-    return -1;
-&#125;
-</code></pre>
-<hr>
-<pre><code>int popLinkStack(LinkStack *link,element *elem) &#123;
-    if (link) &#123;
-        *elem = link-&gt;top.elem;
-        NodeStack *tmp = link-&gt;top.next;
-        link-&gt;top.next = tmp-&gt;next;
-        free(tmp);
-        link-&gt;len--;
-        return 0;
-    &#125;
-    return -1;
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">LinkStack *<span class="title function_">createLinkStack</span><span class="params">()</span> &#123;</span><br><span class="line">    LinkStack *link = (LinkStack *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Linkstack));</span><br><span class="line">    <span class="keyword">if</span> (link == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;LinkStack malloc failed\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>:</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 初始化</span></span><br><span class="line">    link-&gt;top.next = <span class="literal">NULL</span>:</span><br><span class="line">    link-&gt;len = <span class="number">0</span>;</span><br><span class="line">    link-&gt;top.elem = <span class="number">777</span>;   <span class="comment">// 随便写的(不写也行)</span></span><br><span class="line">    <span class="keyword">return</span> link;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">releaseLinkStack</span><span class="params">(LinkStack *link)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (link) &#123;</span><br><span class="line">        <span class="keyword">while</span> (link-&gt;top.next) &#123;</span><br><span class="line">            NodeStack *tmp = link-&gt;top.next;</span><br><span class="line">            link-&gt;top.next = tmp-&gt;next;</span><br><span class="line">            <span class="built_in">free</span>(tmp);</span><br><span class="line">            link-&gt;len--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;release success\nlen = %d&quot;</span>,link-&gt;len);</span><br><span class="line">        <span class="built_in">free</span>(link);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">pushLinkStack</span><span class="params">(LinkStack *link,element elem)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (link) &#123;</span><br><span class="line">        NodeStack *tmp = (NodeStack*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NodeStack));</span><br><span class="line">        <span class="keyword">if</span> (tmp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="comment">// 以后不写了,都是一样的处理办法</span></span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 头插法</span></span><br><span class="line">        tmp-&gt;next = link-&gt;top.next;</span><br><span class="line">        tmp-&gt;elem = elem;</span><br><span class="line">        link-&gt;top.next = node;</span><br><span class="line">        link-&gt;len++;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">popLinkStack</span><span class="params">(LinkStack *link,element *elem)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (link) &#123;</span><br><span class="line">        *elem = link-&gt;top.elem;</span><br><span class="line">        NodeStack *tmp = link-&gt;top.next;</span><br><span class="line">        link-&gt;top.next = tmp-&gt;next;</span><br><span class="line">        <span class="built_in">free</span>(tmp);</span><br><span class="line">        link-&gt;len--;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <p>无了</p>
 
