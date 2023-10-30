@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>1-5 BinarrayTree | 很高兴认识你</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="二叉树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1-5 BinarrayTree">
+<meta property="og:url" content="http://example.com/2023/10/26/1-5BinraryTree/index.html">
+<meta property="og:site_name" content="很高兴认识你">
+<meta property="og:description" content="二叉树">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/BinaryTree/tree.png">
+<meta property="og:image" content="http://example.com/img/BinaryTree/pre.png">
+<meta property="article:published_time" content="2023-10-26T00:25:32.000Z">
+<meta property="article:modified_time" content="2023-10-30T07:03:34.920Z">
+<meta property="article:author" content="777">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="treeStruct">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/BinaryTree/tree.png">
+  
+    <link rel="alternative" href="/atom.xml" title="很高兴认识你" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="/img/T.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">777</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+							<!-- <div style="position: absolute; bottom: 120px; left: auto; width: 85%;"> -->
+							<div style="position: absolute; left: auto; width: 85%;">
+								<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=86 src="//music.163.com/outchain/player?type=2&id=1944869617&auto=1&height=66"></iframe>
+							</div>
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/C/" style="font-size: 14px;">C++</a> <a href="/tags/const/" style="font-size: 10px;">const</a> <a href="/tags/linear/" style="font-size: 16px;">linear</a> <a href="/tags/static/" style="font-size: 10px;">static</a> <a href="/tags/treeStruct/" style="font-size: 10px;">treeStruct</a> <a href="/tags/unsigned/" style="font-size: 10px;">unsigned</a> <a href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" style="font-size: 12px;">小知识</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.cnblogs.com/realyh#/c/subject/category/default.html">阿白</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/T.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-1-5BinraryTree" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/10/26/1-5BinraryTree/" class="article-date">
+  	<time datetime="2023-10-26T00:25:32.000Z" itemprop="datePublished">2023-10-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      1-5 BinarrayTree
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/treeStruct/" rel="tag">treeStruct</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>二叉树<br> <span id="more"></span></p>
+<h1 id="树结构—二叉树"><a href="#树结构—二叉树" class="headerlink" title="树结构—二叉树"></a>树结构—二叉树</h1><h2 id="1-前置知识"><a href="#1-前置知识" class="headerlink" title="1.前置知识"></a>1.前置知识</h2><p><img src="/../img/BinaryTree/tree.png" alt="树的样子"></p>
+<ol>
+<li>父节点和子节点是相对的,该节点相对于其他节点可能是父节点也可能是子节点</li>
+<li>左孩子是父节点下左边的节点,右孩子是右边的</li>
+<li>树的结构为倒数状,越往下度(高度)越低,例如图中左边的父节点度为二<ol>
+<li>节点度的计算方式为该节点的孩子节点的最大的度+1,若该节点没有子节点,则该节点度为0.那么根节点的度为2.</li>
+</ol>
+</li>
+<li>遍历方式(此处都用递归的方式)<ol>
+<li>先序遍历(访问,左,右),从根节点开始,每进入一个节点都做相同的操作.先访问节点,若该节点有左孩子则进入左孩子,若没有则进入右孩子,若都没有则向上递归<br> <img src="/../img/BinaryTree/pre.png" alt="先序遍历"><br> 该图片访问结果为根-A-B-C-D</li>
+<li>中序遍历(左,访问,右),从根节点开始,每进入一个节点都做相同的操作.若该节点有左孩子则进入左孩子,若没有则访问,然后若该节点有右孩子,则进入右孩子,再做一样的判断.若一样用上面的图片,则访问结果为B-A-C-根-D</li>
+<li>后序遍历(左,右,访问),从根节点开始,每进入一个节点都做相同的操作.若该节点有左孩子则进入左孩子,若没有则进入右孩子,若都没有则访问.若一样用上面的图片,则访问结果为B-C-A-D-根</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h2><ol>
+<li>结构体部分</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodeTree</span> &#123;</span>   <span class="comment">// 节点</span></span><br><span class="line">    element data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">nodeTree</span> *<span class="title">left</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">nodeTree</span> *<span class="title">right</span>;</span></span><br><span class="line">&#125;Node;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    Node *root;             <span class="comment">// 根节点</span></span><br><span class="line">    <span class="type">int</span> cnt;                <span class="comment">// 节点个数</span></span><br><span class="line">&#125;Tree;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>需实现的操作<br>创建树,释放树,创建节点,插入节点以及特殊的遍历方式<br>前几个操作与其他数据结构大差不差,只有遍历需要特别注意</p>
+<ol>
+<li>创建树</li>
+</ol>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Tree* <span class="title function_">createBinaryTree</span><span class="params">(Node* root)</span> &#123;</span><br><span class="line">    Tree *tree = (Tree*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Tree));</span><br><span class="line">    <span class="keyword">if</span> (tree == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (root) &#123;</span><br><span class="line">        tree-&gt;root = root;</span><br><span class="line">        tree-&gt;cnt = <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        tree-&gt;root = <span class="literal">NULL</span>;</span><br><span class="line">        tree-&gt;cnt = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tree;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>释放树</li>
+</ol>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">releaseBinaryTree</span><span class="params">(Tree*tree)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (tree) &#123;                             <span class="comment">// 此处调用的函数为自定义函数</span></span><br><span class="line">        destoryTree(tree,tree-&gt;root);       <span class="comment">// 会在下文展示,作用为后序遍历树</span></span><br><span class="line">    &#125;                                       <span class="comment">// 然后销毁节点</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;tree have %d node&quot;</span>,tree-&gt;cnt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>创建节点</li>
+</ol>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Node* <span class="title function_">createNodeTree</span><span class="params">(element elem)</span> &#123;</span><br><span class="line">    Node *node = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 初始化节点</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>插入节点</li>
+</ol>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此处使用一种简单的插入方式,复杂的插入方式以后会展示</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">insertNode</span><span class="params">(Tree* tree,Node* parent,Node* left,Node *right)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (tree &amp;&amp; parent) &#123;</span><br><span class="line">        parent-&gt;left = left;</span><br><span class="line">        parent-&gt;right = right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (left ) tree-&gt;cnt++;</span><br><span class="line">    <span class="keyword">if</span> (right) tree-&gt;cnt++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>遍历<br> 后面出现的**if(node)**判断是必须的不然递归无法跳出</p>
+<ol>
+<li>先序遍历</li>
+</ol>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">preOrder</span><span class="params">(Node *node)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        visitBinTree(node);</span><br><span class="line">        preOrder(node-&gt;left);</span><br><span class="line">        preOrder(node-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>中序遍历</li>
+</ol>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">inOrder</span><span class="params">(Node *node)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        postOrder(node-&gt;left);</span><br><span class="line">        postOrder(node-&gt;right);</span><br><span class="line">        visitBinTree(node);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>后序遍历</li>
+</ol>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">postOrder</span><span class="params">(Node* node)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        postOrder(node-&gt;left);</span><br><span class="line">        postOrder(node-&gt;right);</span><br><span class="line">        visitBinTree(node);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>填坑</p>
+</li>
+</ol>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">destoryTree</span><span class="params">(Tree *tree,Node* node)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        destoryTree(tree,node-&gt;left);</span><br><span class="line">        destoryTree(tree,node-&gt;right);</span><br><span class="line">        <span class="built_in">free</span>(node);</span><br><span class="line">        tree-&gt;cnt--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">visitBinTree</span><span class="params">(Node* node)</span> &#123;  <span class="comment">// 此处访问节点的方式</span></span><br><span class="line">    <span class="keyword">if</span> (node) &#123;                         <span class="comment">// 跟自己定义的数据类型有关</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\t%c&quot;</span>,node-&gt;data);      <span class="comment">// 自己实现就行</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<p>无了</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/09/04/1-4Queue/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1.4 Array Queue/Link Queue</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 777
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
